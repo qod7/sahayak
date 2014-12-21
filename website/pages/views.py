@@ -1,5 +1,10 @@
 from django import forms
+<<<<<<< HEAD
 from django.shortcuts import render,redirect,get_object_or_404
+=======
+from django.contrib import auth
+from django.shortcuts import render
+>>>>>>> 3b476fbc2314ee11ec0d9909a5660e37d2759940
 from django.template import RequestContext, loader
 from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404

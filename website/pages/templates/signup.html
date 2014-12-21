@@ -19,6 +19,7 @@
         <div class="col-sm-5">
             <h3>Enter your details</h3>
             <form method="POST" action="" role="form">
+                {% csrf_token %}
         		<div class="form-group">
                     {{ form.firstname.errors }}
           			{{ form.firstname }}
@@ -41,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label>Latitude</label>
-                    <input id="latidue" name="latitude" class="form-control" disabled="disabled" type="text">
+                    <input id="latitude" name="latitude" class="form-control" disabled="disabled" type="text">
                 </div>
                 <div class="form-group">
                     <label>Longitude</label>
@@ -68,7 +69,8 @@
 
 
     function setPosition(pos){
-        
+        $('#latitude').val(pos.k);
+        $('#longitude').val(pos.D);
     }
 
     function initialize() {
@@ -84,6 +86,7 @@
             //Obtaining current position
             navigator.geolocation.getCurrentPosition(function(position){
                 pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                setPosition(pos);
                 map.setCenter(pos);
 
                 marker = new google.maps.Marker({
@@ -94,10 +97,12 @@
 
                 google.maps.event.addListener(marker, 'dragend', function(){
                     pos=marker.getPosition();
+                    setPosition(pos);
                 });
 
                 google.maps.event.addListener(map, 'click', function(event) {
                     pos=event.latLng;
+                    setPosition(pos);
                     if (marker) { 
                         marker.setMap(null) 
                     }
@@ -113,12 +118,15 @@
             function() {
                 pos = new google.maps.LatLng(27.7, 85.33333330000005);
                 map.setCenter(pos);
+                setPosition(pos);
+
             });
 
         } else {
             // Browser doesn't support Geolocation
             pos = new google.maps.LatLng(27.7, 85.33333330000005);
             map.setCenter(pos);
+            setPosition(pos);
         }
     }
 
