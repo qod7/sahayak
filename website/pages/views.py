@@ -91,13 +91,16 @@ def signup(request):
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
 			email = form.cleaned_data['email']
+
+			latitude = form.request.POST['latitude']
+			longitude = form.request.POST['longitude']
 			
 			# check if the username or email is already registered
 			user = auth.models.User.objects.create_user(username, email, password)
 			user.first_name=firstname
 			user.last_name=lastname
 			user.save()
-
+			
 			user = auth.authenticate(username=username, password=password)
 			return HttpResponse('User created')
 	else:
