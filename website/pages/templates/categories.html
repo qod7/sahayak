@@ -6,8 +6,8 @@
     {% for category in categories %}
     <li class="portfolio-item apps">
       <div class="item-inner">
-        <a href="#"><img src="{% static 'images/portfolio/thumb/item1.jpg' %}" alt=""></a>
-        <h3>Lorem ipsum dolor sit amet</h3>
+        <a href="#"><img src="/media/{{ category.image.image.name }}" alt=""></a>
+        <h3 style="text-align:center;">{{ category.name }}</h3>
       </div>
     </li><!--/.portfolio-item-->
     {% endfor %}
