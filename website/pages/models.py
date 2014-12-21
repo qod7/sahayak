@@ -91,3 +91,6 @@ class Job(models.Model):
 
     rating = models.IntegerField(null=True, blank=True)
     ratingtext = models.CharField(max_length=1000)
+
+class UserInfo(models.Model):
+    user = models.ForeignKey(User)

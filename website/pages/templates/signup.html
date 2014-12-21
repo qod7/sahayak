@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container">
+	<div class="row">
+		<div class="col-sm-7">
+			<h2>Signup with us</h2>	
+		</div>
+
+		<div class="col-sm-5">
+			<div class="well well-lg">
+				<h3>Enter your details</h3>
+			</div>
+			<form method="POST" action="" role="form">
+				<div class="form-group">
+                    <input type="text" class="form-control" required="required" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" required="required" placeholder="Last Name">
+                </div>
+				<div class="form-group">
+                    <input type="text" class="form-control" required="required" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" required="required" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" required="required" placeholder="rePassword">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" required="required" placeholder="Email address">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg">Signup</button>
+                </div>
+		        </div>
+		    </form>
+	    </div>
+    </div>
+</section>
+{% endblock %}
