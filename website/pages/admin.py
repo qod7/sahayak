@@ -1,3 +1,7 @@
 from django.contrib import admin
+from pages.models import Media
 
-# Register your models here.
+class MediaAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'showimage']
+
+admin.site.register(Media, MediaAdmin)

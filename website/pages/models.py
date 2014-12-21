@@ -16,7 +16,7 @@ class Media(models.Model):
         """
         Save Photo after ensuring it is not blank.  Resize as needed.
         """
-        from bhancha import settings
+        from sahayak import settings
 
         if not self.image:
             return
