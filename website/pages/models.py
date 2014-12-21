@@ -61,7 +61,7 @@ class Field(models.Model):
 class WorkerInfo(models.Model):
     user = models.ForeignKey(User)
     image = models.ForeignKey(Media, null=True, blank=True)
-    field = models.ManyToManyField(Field, null=True, blank=True, related_name="workerinfo" , related_query_name="worker"))
+    field = models.ManyToManyField(Field, null=True, blank=True, related_name="workerinfo" , related_query_name="worker")
     totalrating = models.IntegerField(default=0)
     rating = models.FloatField(default=0)
     ratingcount = models.IntegerField(default=0)
