@@ -1,6 +1,6 @@
 from django import forms
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import auth
-from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
@@ -124,7 +124,7 @@ def signup(request):
 			user.last_name=lastname
 			user.save()
 
-			userinfo = UserInfo(user_id=user.id,latitude=latitude,longitude=longitude)
+			userinfo = UserInfo(user=user,latitude=latitude,longitude=longitude)
 			userinfo.save()
 			
 			user = auth.authenticate(username=username, password=password)
@@ -142,6 +142,20 @@ def categorylist(request):
         'title': "Categories : Sahayak",
         'mainmenuindex': 2,
         'categories': categories,
+    })
+
+    return HttpResponse(template.render(context))
+
+
+def categorypage(request, category_name):
+
+    category = get_object_or_404(Field, slug=category_name)
+
+    template = loader.get_template('categorypage.html')
+    context = RequestContext(request, {
+        'title': "All workers working in category "+category.name,
+        'mainmenuindex': 2,
+        'category': category,
     })
 
     return HttpResponse(template.render(context))
