@@ -47,3 +47,25 @@ class Media(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class Field(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100)
+    image = models.ForeignKey(Media, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class WorkerInfo(models.Model):
+    user = models.ForeignKey(User)
+    image = models.ForeignKey(Media, null=True, blank=True)
+    field = models.ForeignKey(Field)
+    totalrating = models.IntegerField(default=0)
+    rating = models.FloatField(default=0)
+    ratingcount = models.IntegerField(default=0)
+    phonenumber = models.CharField(max_length=100)
+
+    latitude = models.FloatField(default=0)
+    longitude = models.FloatField(default=0)
