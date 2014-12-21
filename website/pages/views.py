@@ -150,12 +150,14 @@ def categorylist(request):
 def categorypage(request, category_name):
 
     category = get_object_or_404(Field, slug=category_name)
+    workers = WorkerInfo.objects.filter(field=category)
 
     template = loader.get_template('categorypage.html')
     context = RequestContext(request, {
         'title': "All workers working in category "+category.name,
         'mainmenuindex': 2,
         'category': category,
+        'workers': workers,
     })
 
     return HttpResponse(template.render(context))

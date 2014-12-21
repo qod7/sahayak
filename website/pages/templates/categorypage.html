@@ -10,4 +10,19 @@
     <div class="gap"></div>
   </div>
 </div>
+
+
+<section id="portfolio" class="container">
+  <ul class="portfolio-items col-3">
+    {% for worker in workers %}
+    <li class="portfolio-item apps">
+      <div class="item-inner">
+        <a href=""><img src="/media/{{ worker.image.image.name }}" alt=""></a>
+        <h3 style="text-align:center;">{{ worker.getname }}</h3>
+      </div>
+    </li><!--/.portfolio-item-->
+    {% endfor %}
+  </ul>
+</section><!--/#portfolio-->
+
 {% endblock content %}

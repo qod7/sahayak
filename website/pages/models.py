@@ -70,6 +70,9 @@ class WorkerInfo(models.Model):
     def __str__(self):
         return "Worker info for "+self.user.first_name+" "+self.user.last_name
 
+    def getname(self):
+        return self.user.first_name+" "+self.user.last_name
+
 
 class Job(models.Model):
     customer = models.ForeignKey(User)
