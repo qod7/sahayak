@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
     <title>
       {{ title }}
     </title>
@@ -20,7 +20,7 @@
     <script src="{% static 'js/html5shiv.js' %}"></script>
     <script src="{% static 'js/respond.min.js' %}"></script>
     <![endif]-->
-    
+
     <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico' %}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
@@ -28,7 +28,7 @@
     <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    
+
   </head><!--/head-->
   <body>
     <header class="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
@@ -40,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/sahayak.png' %}" alt="logo"></a>
+          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -53,7 +53,7 @@
 
     {% block content %}
     {% endblock content %}
-    
+
     <footer id="footer" class="midnight-blue">
       <div class="container">
         <div class="row">
