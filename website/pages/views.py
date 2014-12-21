@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
-from pages.models import Media,Field,WorkerInfo,Job
+from pages.models import Media,Field,WorkerInfo,Job,UserInfo
 
 def home(request):
     template = loader.get_template('home.html')
@@ -100,6 +100,12 @@ def signup(request):
 			user.first_name=firstname
 			user.last_name=lastname
 			user.save()
+
+			userinfo = new UserInfo()
+			userinfo.user_id=user.id
+            userinfo.latitude=latitude
+            userinfo.longitude=longitude
+            userinfo.save()
 			
 			user = auth.authenticate(username=username, password=password)
 			return HttpResponse('User created')
