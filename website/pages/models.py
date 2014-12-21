@@ -53,6 +53,7 @@ class Field(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100)
     image = models.ForeignKey(Media, null=True, blank=True)
+    workername = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.name
