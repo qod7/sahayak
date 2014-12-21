@@ -111,7 +111,7 @@ def categorylist(request):
     template = loader.get_template('categories.html')
 
     categories = Field.objects.all()
-    categories = [1,2,3]
+
     context = RequestContext(request, {
         'title': "Categories : Sahayak",
         'mainmenuindex': 2,
