@@ -45,7 +45,11 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li {% if mainmenuindex == 1 %}class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
+            {% if user.is_authenticated %}
             <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'categorylist' %}">Categories</a></li>
+            {% else %}
+            <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

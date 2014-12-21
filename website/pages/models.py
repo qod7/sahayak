@@ -61,11 +61,15 @@ class Field(models.Model):
 class WorkerInfo(models.Model):
     user = models.ForeignKey(User)
     image = models.ForeignKey(Media, null=True, blank=True)
-    field = models.ForeignKey(Field)
+    field = models.ManyToManyField(Field, null=True, blank=True, related_name="workerinfo" , related_query_name="worker"))
     totalrating = models.IntegerField(default=0)
     rating = models.FloatField(default=0)
     ratingcount = models.IntegerField(default=0)
     phonenumber = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "Worker info for "+self.user.first_name+" "+self.user.last_name
+
 
 class Job(models.Model):
     customer = models.ForeignKey(User)

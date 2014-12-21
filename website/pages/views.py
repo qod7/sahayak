@@ -107,31 +107,31 @@ class SignupForm(forms.Form):
 
 def signup(request):
         if(request.method=='POST'):
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            firstname = form.cleaned_data['firstname']
-            lastname = form.cleaned_data['lastname']
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            email = form.cleaned_data['email']
+            form = SignupForm(request.POST)
+            if form.is_valid():
+                firstname = form.cleaned_data['firstname']
+                lastname = form.cleaned_data['lastname']
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
+                email = form.cleaned_data['email']
 
-            latitude = request.POST['latitude']
-            longitude = request.POST['longitude']
+                latitude = request.POST['latitude']
+                longitude = request.POST['longitude']
 
-            # check if the username or email is already registered
-            user = auth.models.User.objects.create_user(username, email, password)
-            user.first_name=firstname
-            user.last_name=lastname
-            user.save()
+                # check if the username or email is already registered
+                user = auth.models.User.objects.create_user(username, email, password)
+                user.first_name=firstname
+                user.last_name=lastname
+                user.save()
 
-            userinfo = UserInfo(user=user,latitude=latitude,longitude=longitude)
-            userinfo.save()
+                userinfo = UserInfo(user=user,latitude=latitude,longitude=longitude)
+                userinfo.save()
 
-            user = auth.authenticate(username=username, password=password)
-            return HttpResponse('User created')
-    else:
-        form=SignupForm()
-        return render(request,'signup.html',{'form':form})
+                user = auth.authenticate(username=username, password=password)
+                return HttpResponse('User created')
+        else:
+            form=SignupForm()
+            return render(request,'signup.html',{'form':form})
 
 def categorylist(request):
     template = loader.get_template('categories.html')
