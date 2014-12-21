@@ -11,3 +11,7 @@ def home(request):
     })
 
     return HttpResponse(template.render(context))
+
+
+def signup(request):
+	return render(request,'signup.html')

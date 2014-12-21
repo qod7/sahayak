@@ -69,3 +69,7 @@ class WorkerInfo(models.Model):
 
     latitude = models.FloatField(default=0)
     longitude = models.FloatField(default=0)
+
+
+class UserInfo(models.Model):
+    user = models.ForeignKey(User)
