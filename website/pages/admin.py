@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pages.models import Media,Field,WorkerInfo
+from pages.models import Media,Field,WorkerInfo,Job
 
 class MediaAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'showimage']
@@ -17,3 +17,9 @@ class WorkerInfoAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(WorkerInfo, WorkerInfoAdmin)
+
+
+class JobAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Job, JobAdmin)

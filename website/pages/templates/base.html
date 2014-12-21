@@ -44,7 +44,8 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li {% if mainmenuindex == 1 %}class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
+            <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'categorylist' %}">Categories</a></li>
           </ul>
         </div>
       </div>
@@ -52,6 +53,7 @@
 
     {% block content %}
     {% endblock content %}
+    
     <footer id="footer" class="midnight-blue">
       <div class="container">
         <div class="row">
@@ -74,9 +76,11 @@
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/jquery.isotope.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    
+
     {% block scripts %}
     {% endblock %}
+
   </body>
 </html>
