@@ -48,7 +48,7 @@
             {% if user.is_authenticated %}
             <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'categorylist' %}">Categories</a></li>
             {% else %}
-            <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li {% if mainmenuindex == 3 %}class="active" {% endif %}><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
           </ul>
         </div>

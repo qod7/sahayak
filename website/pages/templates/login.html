@@ -4,19 +4,36 @@
 <section class="container" style="min-height:480px;">
     <div class="row">
         <div class="col-sm-8">
-            <h2>Welcome</h2>
+            
         </div>
-        <div class="col-sm-4 well well-lg" style="background-color: #E4E4E4;">
-            <h3>Enter you details</h3>
-            <form method="POST" action="{% url 'login' %}" role="form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <input class="form-control" type="text" name="username" placeholder="Username" required>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Enter you details</h2>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                <div class="panel-body">
+                    <form method="POST" action="{% url 'login' %}" role="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="remember" value="Remember Me" type="checkbox">Remember Me
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg">Login</button>
+                    </div>
+                    <p>
+                        <a href="{% url 'signup' %}">Create a new account</a>
+                    </p>
+                </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </section>
