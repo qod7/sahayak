@@ -67,9 +67,6 @@ class WorkerInfo(models.Model):
     ratingcount = models.IntegerField(default=0)
     phonenumber = models.CharField(max_length=100)
 
-    latitude = models.FloatField(default=0)
-    longitude = models.FloatField(default=0)
-
 class Job(models.Model):
     customer = models.ForeignKey(User)
     worker = models.ForeignKey(WorkerInfo)
