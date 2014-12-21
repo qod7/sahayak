@@ -82,6 +82,29 @@ class SignupForm(forms.Form):
         ),
     )
 
+    latitude = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'required':'required',
+                'readonly':''
+            },
+        ),
+    )
+
+    longitude = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'required':'required',
+                'readonly':''
+            },
+        ),
+    )
+
+
 def signup(request):
 	if(request.method=='POST'):
 		form = SignupForm(request.POST)
@@ -92,8 +115,8 @@ def signup(request):
 			password = form.cleaned_data['password']
 			email = form.cleaned_data['email']
 
-			latitude = form.request.POST['latitude']
-			longitude = form.request.POST['longitude']
+			latitude = request.POST['latitude']
+			longitude = request.POST['longitude']
 			
 			# check if the username or email is already registered
 			user = auth.models.User.objects.create_user(username, email, password)
@@ -101,11 +124,8 @@ def signup(request):
 			user.last_name=lastname
 			user.save()
 
-			userinfo = new UserInfo()
-			userinfo.user_id=user.id
-            userinfo.latitude=latitude
-            userinfo.longitude=longitude
-            userinfo.save()
+			userinfo = UserInfo(user_id=user.id,latitude=latitude,longitude=longitude)
+			userinfo.save()
 			
 			user = auth.authenticate(username=username, password=password)
 			return HttpResponse('User created')

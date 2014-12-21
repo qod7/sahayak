@@ -34,7 +34,7 @@ class Media(models.Model):
     #         ratio = width/height
     #         image.thumbnail((200*ratio, 200), Image.ANTIALIAS)
     #     image.save(filename)
-    
+
     def showimage(self):
         return '<img src="/media/'+self.image.name+'"/>'
     showimage.allow_tags = True
