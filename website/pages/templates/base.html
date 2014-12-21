@@ -73,7 +73,7 @@
             {% if user.is_authenticated %}
             <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'categorylist' %}">Categories</a></li>
             {% else %}
-            <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li {% if mainmenuindex == 3 %}class="active" {% endif %}><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
           </ul>
         </div>
@@ -84,22 +84,13 @@
     {% endblock content %}
 
     <footer id="footer" class="midnight-blue">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            &copy; 2014 Sahayak. All Rights Reserved.
-          </div>
-          <div class="col-sm-6">
-            <ul class="pull-right">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Faq</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li><!--#gototop-->
-            </ul>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2014 Sahayak. All Rights Reserved.
+                </div>
+            </div>
         </div>
-      </div>
     </footer><!--/#footer-->
 
     {% block scripts %}

@@ -6,6 +6,20 @@ from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 from pages.models import Media,Field,WorkerInfo,Job,UserInfo
 
+# Create your views here.
+def login(request):
+    if(request.method=='POST'):
+        username=request.POST['username']
+        password=request.POST['password']
+        user=auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('categorylist')
+        else:
+            return render(request,'login.html',{'message':'Invalid login'})
+    else:
+        return render(request, 'login.html')
+
 def home(request):
     template = loader.get_template('home.html')
     context = RequestContext(request, {
