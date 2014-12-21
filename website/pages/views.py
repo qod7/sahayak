@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib import auth
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
