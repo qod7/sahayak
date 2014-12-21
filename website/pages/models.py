@@ -67,6 +67,7 @@ class WorkerInfo(models.Model):
     rating = models.FloatField(default=0)
     ratingcount = models.IntegerField(default=0)
     phonenumber = models.CharField(max_length=100)
+    about = models.TextField(default='')
 
     def __str__(self):
         return "Worker info for "+self.user.first_name+" "+self.user.last_name
@@ -74,10 +75,56 @@ class WorkerInfo(models.Model):
     def getname(self):
         return self.user.first_name+" "+self.user.last_name
 
+    def jobscompleted(self):
+        return Job.objects.filter(worker=self, status=Job.COMPLETED).count()
+
+    def jobspending(self):
+        return Job.objects.filter(worker=self, status=Job.ACCEPTED).count()
+
+    def isbusy(self):
+        # If the accepted jobs count of a user exceeds 3, then he is busy
+        return self.jobspending() > 1
+
+    def isexperienced(self):
+        return self.jobscompleted() > 2
+
+    def availability(self):
+        if self.isbusy():
+            return "Busy"
+        return "Free"
+
+
+    def addrating(self, ratingpoint):
+        self.ratingcount += 1
+        self.totalrating += ratingpoint
+        self.rating = self.totalrating / (self.ratingcount * 1.0)
+        self.save()
+
+    def gettags(self):
+        tags = ''
+        if self.isbusy():
+            tags += ' busy'
+        else:
+            tags += ' free'
+        if self.rating > 4.0:
+            tags += ' toprated'
+        if self.isexperienced():
+            tags += ' experienced'
+        return tags
+
+    def skills(self):
+        list = []
+        for field in self.field.all():
+            list.append(field.name)
+        return ",".join(list)
+
 
 class Job(models.Model):
     customer = models.ForeignKey(User)
     worker = models.ForeignKey(WorkerInfo)
+
+    title = models.CharField(max_length=1000, default='')
+    description = models.TextField(default='')
 
     AWAITING = "AR"
     REJECTED = "RJ"
@@ -95,7 +142,10 @@ class Job(models.Model):
                               default=AWAITING)
 
     rating = models.IntegerField(null=True, blank=True)
-    ratingtext = models.CharField(max_length=1000)
+    ratingtext = models.CharField(max_length=1000, blank=True, default='')
+
+    def __str__(self):
+        return self.title+" for "+self.customer.first_name+" "+self.customer.last_name+" by "+self.worker.getname()
 
 class UserInfo(models.Model):
     user = models.ForeignKey(User)

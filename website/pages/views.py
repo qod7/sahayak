@@ -161,3 +161,30 @@ def categorypage(request, category_name):
     })
 
     return HttpResponse(template.render(context))
+
+
+def workerpage(request, worker_number):
+    worker = get_object_or_404(WorkerInfo, pk=worker_number)
+    template = loader.get_template('workerpage.html')
+
+    comments = []
+    commentobj = Job.objects.filter(worker=worker, status=Job.COMPLETED)
+    for comobj in commentobj:
+        if len(comobj.ratingtext) > 2:
+            comment = {}
+            comment["comment"] = comobj.ratingtext
+            comment["by"] = comobj.customer.first_name+" "+comobj.customer.last_name
+            comment["rating"] = comobj.rating
+            comments.append(comment)
+
+    commentscount = len(comments)
+
+    context = RequestContext(request, {
+        'title': "Info about  "+worker.getname(),
+        'mainmenuindex': 2,
+        'worker': worker,
+        'comments': comments,
+        'commentscount': commentscount,
+    })
+
+    return HttpResponse(template.render(context))

@@ -13,12 +13,24 @@
 
 
 <section id="portfolio" class="container">
+
+  <ul class="portfolio-filter">
+    <li><a class="btn btn-default active" href="#" data-filter="*">All</a></li>
+    <li><a class="btn btn-default" href="#" data-filter=".busy">Busy</a></li>
+    <li><a class="btn btn-default" href="#" data-filter=".free">Free</a></li>
+    <li><a class="btn btn-default" href="#" data-filter=".toprated">High Rated</a></li>
+    <li><a class="btn btn-default" href="#" data-filter=".experienced">Experienced</a></li>
+  </ul><!--/#portfolio-filter-->
+
   <ul class="portfolio-items col-3">
     {% for worker in workers %}
-    <li class="portfolio-item apps">
+    <li class="portfolio-item {{ worker.gettags }}">
       <div class="item-inner">
-        <a href=""><img src="/media/{{ worker.image.image.name }}" alt=""></a>
-        <h3 style="text-align:center;">{{ worker.getname }}</h3>
+        <a href="{% url 'workerpage' worker.pk %}"><img src="/media/{{ worker.image.image.name }}" alt=""></a>
+        <h3 style="text-align:center;">{{ worker.getname }}</h3><br/>
+        <div style="width:90px;margin:auto;"><span class="stars">{{ worker.rating }}</span></div><br/>
+        <div style="text-align:center;">Availability : {{ worker.availability }}</div>
+        <br/><br/>
       </div>
     </li><!--/.portfolio-item-->
     {% endfor %}

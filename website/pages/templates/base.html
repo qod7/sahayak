@@ -33,7 +33,26 @@
     <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
     <script src="{% static 'js/jquery.isotope.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+      $.fn.stars = function() {
+            return $(this).each(function() {
+                $(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * 16));
+            });
+        }
+    </script>
 
+    <style type="text/css">
+        span.stars, span.stars span {
+            display: block;
+            background: url({% static 'stars.png' %}) 0 -16px repeat-x;
+            width: 80px;
+            height: 16px;
+        }
+
+        span.stars span {
+            background-position: 0 0;
+        }
+    </style>
 
   </head><!--/head-->
   <body>
@@ -85,6 +104,8 @@
 
     {% block scripts %}
     {% endblock %}
-
+    <script>
+      $('span.stars').stars();
+    </script>
   </body>
 </html>

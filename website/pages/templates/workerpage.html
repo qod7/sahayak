@@ -1,0 +1,68 @@
+{% extends "base.html" %}{% load staticfiles %}
+
+{% block content %}
+<section id="contact-page" class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4>{{ worker.getname }}</h4>
+      <a href="{% url 'workerpage' worker.pk %}"><img src="/media/{{ worker.image.image.name }}" alt="" style="width:300px;height:auto;"></a>
+    </div>
+    <div class="col-sm-4"><br/><br/><br/><br/>
+      <strong>Name: </strong> {{ worker.getname }}<br/>
+      <strong>Total Jobs Completed: </strong>{{ worker.jobscompleted }}<br/>
+      <strong>Total Jobs Pending: </strong>{{ worker.jobspending }}<br/>
+      <strong>Availability: </strong>{{ worker.availability }}<br/>
+      <strong>Skills: </strong>{{ worker.skills }}<br/>
+      <strong>Phone No: </strong>{{ worker.phonenumber }}<br/>
+      <strong>Rating: </strong><span class="stars">{{ worker.rating }}</span><br/>
+    </div>
+    <div class="col-sm-4">
+      <h4>{{worker.getname}}'s Location</h4>
+      <iframe width="100%" height="315" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.au/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Dhaka,+Dhaka+Division,+Bangladesh&amp;aq=0&amp;oq=dhaka+ban&amp;sll=40.714353,-74.005973&amp;sspn=0.836898,1.815491&amp;ie=UTF8&amp;hq=&amp;hnear=Dhaka+Division,+Bangladesh&amp;t=m&amp;ll=24.542126,90.293884&amp;spn=0.124922,0.411301&amp;z=8&amp;output=embed"></iframe>
+    </div><!--/.col-sm-4-->
+  </div>
+</section><!--/#contact-page-->
+
+
+
+<section id="blog" class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="blog">
+        <div class="blog-item">
+          <img class="img-responsive img-blog" src="images/blog/blog2.jpg" width="100%" alt="" />
+          <div class="blog-content">
+            <h3>About {{ worker.getname }}</h3>
+            <p class="lead">{{ worker.about }}</p>
+            <hr>
+            <div id="comments">
+              <div id="comments-list">
+                <h3>Latest Comments about {{worker.getname}}</h3>
+                {% if commentscount > 0 %}
+
+                {% for comment in comments %}
+                <div class="media">
+                  <div class="media-body">
+                    <div class="well">
+                      <div class="media-heading">
+                        <strong>{{ comment.by }}</strong>
+                        <span class="stars">{{ comment.rating }}</span>
+                      </div>
+                      <p>{{ comment.comment }}</p>
+                    </div>
+                  </div>
+                </div><!--/.media-->
+                {% endfor %}
+                {% else %}
+                No comments
+                {% endif %}
+
+              </div><!--/#comments-list-->
+            </div><!--/#comments-->
+          </div>
+        </div><!--/.blog-item-->
+      </div>
+    </div><!--/.col-md-8-->
+  </div><!--/.row-->
+</section><!--/#blog-->
+{% endblock content %}
