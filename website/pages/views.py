@@ -179,6 +179,7 @@ def categorypage(request, category_name):
 
 def workerpage(request, worker_number):
     worker = get_object_or_404(WorkerInfo, pk=worker_number)
+    userinfo = UserInfo.objects.get(user=worker.user)
     template = loader.get_template('workerpage.html')
 
     comments = []
@@ -199,6 +200,7 @@ def workerpage(request, worker_number):
         'worker': worker,
         'comments': comments,
         'commentscount': commentscount,
+        'userinfo': userinfo,
     })
 
     return HttpResponse(template.render(context))

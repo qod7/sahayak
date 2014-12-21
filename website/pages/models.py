@@ -148,7 +148,7 @@ class Job(models.Model):
         return self.title+" for "+self.customer.first_name+" "+self.customer.last_name+" by "+self.worker.getname()
 
 class UserInfo(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User, related_name="userinfo", related_query_name="info")
 
     latitude=models.FloatField(default=0)
     longitude=models.FloatField(default=0)
