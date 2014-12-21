@@ -4,7 +4,7 @@ from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 
 def home(request):
-    template = loader.get_template('base.html')
+    template = loader.get_template('home.html')
     context = RequestContext(request, {
         'title': "Sahayak",
         'mainmenuindex': 1,
