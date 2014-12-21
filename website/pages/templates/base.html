@@ -28,6 +28,12 @@
     <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'js/jquery.isotope.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
 
   </head><!--/head-->
   <body>
@@ -76,12 +82,6 @@
         </div>
       </div>
     </footer><!--/#footer-->
-
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
-    <script src="{% static 'js/jquery.isotope.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
 
     {% block scripts %}
     {% endblock %}
