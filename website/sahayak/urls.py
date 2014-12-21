@@ -5,6 +5,7 @@ from sahayak import settings
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'pages.views.home', name='home'),
+    url(r'^categories$', 'pages.views.categorylist', name='categorylist'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
