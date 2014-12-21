@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     url(r'^categories$', 'pages.views.categorylist', name='categorylist'),
     url(r'^signup/', 'pages.views.signup', name='signup'),
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'^category/(?P<category_name>[A-Za-z0-9_;:-]+)$', 'pages.views.categorypage', name='categorypage'),
     url(r'^admin/', include(admin.site.urls)),
 )
 

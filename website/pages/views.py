@@ -1,5 +1,5 @@
 from django import forms
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from django.template import RequestContext, loader
 from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
@@ -82,26 +82,25 @@ class SignupForm(forms.Form):
     )
 
 def signup(request):
-	if(request.method=='POST'):
-		form = SignupForm(request.POST)
-		if form.is_valid():
-			firstname = form.cleaned_data['firstname']
-			lastname = form.cleaned_data['lastname']
-			username = form.cleaned_data['username']
-			password = form.cleaned_data['password']
-			email = form.cleaned_data['email']
-			
-			# check if the username or email is already registered
-			user = auth.models.User.objects.create_user(username, email, password)
-			user.first_name=firstname
-			user.last_name=lastname
-			user.save()
+    if(request.method=='POST'):
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            firstname = form.cleaned_data['firstname']
+            lastname = form.cleaned_data['lastname']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            # check if the username or email is already registered
+            user = auth.models.User.objects.create_user(username, email, password)
+            user.first_name=firstname
+            user.last_name=lastname
+            user.save()
 
-			user = auth.authenticate(username=username, password=password)
-			return HttpResponse('User created')
-	else:
-		form=SignupForm()
-		return render(request,'signup.html',{'form':form})
+            user = auth.authenticate(username=username, password=password)
+            return HttpResponse('User created')
+    else:
+        form=SignupForm()
+        return render(request,'signup.html',{'form':form})
 
 def categorylist(request):
     template = loader.get_template('categories.html')
@@ -112,6 +111,20 @@ def categorylist(request):
         'title': "Categories : Sahayak",
         'mainmenuindex': 2,
         'categories': categories,
+    })
+
+    return HttpResponse(template.render(context))
+
+
+def categorypage(request, category_name):
+
+    category = get_object_or_404(Field, slug=category_name)
+
+    template = loader.get_template('categorypage.html')
+    context = RequestContext(request, {
+        'title': "All workers working in category "+category.name,
+        'mainmenuindex': 2,
+        'category': category,
     })
 
     return HttpResponse(template.render(context))
