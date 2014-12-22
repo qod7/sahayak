@@ -71,6 +71,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li {% if mainmenuindex == 1 %}class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
             {% if user.is_authenticated %}
+
             <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'categorylist' %}">Categories</a></li>
             <li {% if mainmenuindex == 3 %}class="active" {% endif %}><a href="{% url 'myjobs' %}">My Jobs</a></li>
             <li><a href="{% url 'logout' %}">My Jobs</a></li>
