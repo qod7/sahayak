@@ -204,3 +204,70 @@ def workerpage(request, worker_number):
     })
 
     return HttpResponse(template.render(context))
+
+class HireForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '')
+        super(HireForm, self).__init__(*args, **kwargs)
+
+    subject = forms.CharField(
+        label='Enter Title of Job',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'eg: Sink needs fixing'
+            }
+        ),
+        error_messages={'required': "You must enter a title for your job."}
+    )
+
+    description = forms.CharField(
+        label='Description of the job',
+        required=True,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+            }
+        ),
+        error_messages={'required': "You must enter a description for your job."}
+    )
+
+def hireworker(request, worker_number):
+    worker = get_object_or_404(WorkerInfo, pk=worker_number)
+    userinfo = UserInfo.objects.get(user=worker.user)
+    template = loader.get_template('hireworker.html')
+
+    created = False
+
+    if request.method == 'POST':  # If the form has been submitted...
+        form = HireForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            description = form.cleaned_data['description']
+            # Save the object
+            job = Job(
+                customer=request.user,
+                worker=worker,
+                title=subject,
+                description=description,
+                status=Job.AWAITING,
+            )
+            job.save()
+            created=True
+    else:
+        form = HireForm()
+
+    context = RequestContext(request, {
+        'title': "Hire  "+worker.getname(),
+        'mainmenuindex': 2,
+        'worker': worker,
+        'userinfo': userinfo,
+        'form': form,
+        'success': created,
+    })
+
+    return HttpResponse(template.render(context))
+
+    return HttpResponse("Hello world")

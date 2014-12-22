@@ -4,7 +4,7 @@
 <section id="contact-page" class="container">
   <div class="row">
     <div class="col-sm-4">
-      <h4>{{ worker.getname }}</h4>
+      <h3>{{ worker.getname }}</h3>
       <a href="{% url 'workerpage' worker.pk %}"><img src="/media/{{ worker.image.image.name }}" alt="" style="width:300px;height:auto;"></a>
     </div>
     <div class="col-sm-4"><br/><br/><br/><br/>
@@ -16,7 +16,7 @@
       <strong>Phone No: </strong>{{ worker.phonenumber }}<br/>
       <strong>Rating: </strong><span class="stars">{{ worker.rating }}</span><br/>
       <br/>
-      <a href="#" class="btn btn-default">Hire {{ worker.getname}} <i class="icon-angle-right"></i></a>
+      <a href="{% url 'hireworker' worker.pk %}" class="btn btn-default">Hire {{ worker.getname}} <i class="icon-angle-right"></i></a>
     </div>
     <div class="col-sm-4">
       <h4>{{worker.getname}}'s Location</h4>
