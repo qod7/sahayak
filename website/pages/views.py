@@ -299,3 +299,17 @@ def myjobs(request):
     })
 
     return HttpResponse(template.render(context))
+
+def workerjobs(request):
+    template = loader.get_template('workerjobs.html')
+
+    myjobs = Job.objects.filter(worker__user = request.user)
+
+    context = RequestContext(request, {
+        'title': "My Incoming Jobs",
+        'mainmenuindex': 4,
+        'jobs': myjobs,
+        'isworker': isWorker(request),
+    })
+
+    return HttpResponse(template.render(context))

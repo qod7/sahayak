@@ -1,0 +1,34 @@
+{% extends "base.html" %}{% load staticfiles %}
+
+{% block content %}
+<section id="contact-page" class="container">
+  <div class="row">
+
+    {% for job in jobs %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapseTwo{{forloop.counter}}">
+            <strong>{{ job.title }}</strong> given by {{job.customer.first_name}} {{job.customer.last_name}}
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo{{forloop.counter}}" class="panel-collapse collapse">
+        <div class="panel-body">
+          <strong>Job Description: </strong><br/>
+          <p>{{job.description}}</p>
+          <strong>Status: </strong><br/>
+          <p>{{job.get_status_display}}</p>
+
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No jobs. Please assign jobs to workers first.</p>
+    {% endfor %}
+
+
+  </div>
+</section><!--/#contact-page-->
+
+{% endblock content %}
