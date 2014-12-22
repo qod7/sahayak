@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^hire/(?P<worker_number>\d+)$', 'pages.views.hireworker', name='hireworker'),
     url(r'^myjobs$', 'pages.views.myjobs', name='myjobs'),
     url(r'^workerjobs$', 'pages.views.workerjobs', name='workerjobs'),
+    url(r'^workeraction/(?P<job_number>\d+)/(?P<action>[A-Za-z0-9_;:-]+)$', 'pages.views.workeraction', name='workeraction'),
     url(r'^admin/', include(admin.site.urls)),
 )
 

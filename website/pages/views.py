@@ -313,3 +313,8 @@ def workerjobs(request):
     })
 
     return HttpResponse(template.render(context))
+
+
+def workeraction(request, job_number, action):
+    job = Job.objects.get(pk=number)
+    return HttpResponse(action)

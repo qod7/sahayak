@@ -1,3 +1,3 @@
 #!/bin/bash
 #script to run the server
-python3 manage.py runserver
+sudo python3 manage.py runserver 192.168.1.103:80
