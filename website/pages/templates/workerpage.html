@@ -8,13 +8,13 @@
       <a href="{% url 'workerpage' worker.pk %}"><img src="/media/{{ worker.image.image.name }}" alt="" style="width:300px;height:auto;"></a>
     </div>
     <div class="col-sm-4"><br/><br/><br/><br/>
-      <strong>Name: </strong> {{ worker.getname }}<br/>
-      <strong>Total Jobs Completed: </strong>{{ worker.jobscompleted }}<br/>
-      <strong>Total Jobs Pending: </strong>{{ worker.jobspending }}<br/>
-      <strong>Availability: </strong>{{ worker.availability }}<br/>
-      <strong>Skills: </strong>{{ worker.skills }}<br/>
-      <strong>Phone No: </strong>{{ worker.phonenumber }}<br/>
-      <strong>Rating: </strong><span class="stars">{{ worker.rating }}</span><br/>
+      <p><strong>Name: </strong> {{ worker.getname }}<br/></p>
+        <p><strong>Total Jobs Completed: </strong>{{ worker.jobscompleted }}<br/></p>
+        <p><strong>Total Jobs Pending: </strong>{{ worker.jobspending }}<br/></p>
+        <p><strong>Availability: </strong>{{ worker.availability }}<br/></p>
+        <p><strong>Skills: </strong>{{ worker.skills }}<br/></p>
+        <p><strong>Phone No: </strong>{{ worker.phonenumber }}<br/></p>
+        <p><strong>Rating: </strong><span class="stars">{{ worker.rating }}</span><br/></p>
       <br/>
       <a href="{% url 'hireworker' worker.pk %}" class="btn btn-default">Hire {{ worker.getname}} <i class="icon-angle-right"></i></a>
     </div>

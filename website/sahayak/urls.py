@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^category/(?P<category_name>[A-Za-z0-9_;:-]+)$', 'pages.views.categorypage', name='categorypage'),
     url(r'^(?P<worker_number>\d+)$', 'pages.views.workerpage', name='workerpage'),
     url(r'^hire/(?P<worker_number>\d+)$', 'pages.views.hireworker', name='hireworker'),
+    url(r'^myjobs$', 'pages.views.myjobs', name='myjobs'),
     url(r'^admin/', include(admin.site.urls)),
 )
 

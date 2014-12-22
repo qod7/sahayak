@@ -270,4 +270,16 @@ def hireworker(request, worker_number):
 
     return HttpResponse(template.render(context))
 
-    return HttpResponse("Hello world")
+
+def myjobs(request):
+    template = loader.get_template('myjobs.html')
+
+    myjobs = Job.objects.filter(customer = request.user)
+
+    context = RequestContext(request, {
+        'title': "My Jobs",
+        'mainmenuindex': 3,
+        'jobs': myjobs,
+    })
+
+    return HttpResponse(template.render(context))
