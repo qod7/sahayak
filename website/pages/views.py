@@ -6,6 +6,12 @@ from django.http import HttpResponse,HttpRequest,HttpResponseRedirect
 from django.shortcuts import render,redirect,get_object_or_404
 from pages.models import Media,Field,WorkerInfo,Job,UserInfo
 
+
+def isWorker(request):
+    if not request.user.is_authenticated():
+        return False
+    return WorkerInfo.objects.filter(user=request.user).count() > 0
+
 # Create your views here.
 def login(request):
     if(request.method=='POST'):
@@ -23,6 +29,7 @@ def login(request):
 def home(request):
     template = loader.get_template('home.html')
     context = RequestContext(request, {
+        'isworker': isWorker(request),
         'title': "Sahayak",
         'mainmenuindex': 1,
     })
@@ -153,6 +160,7 @@ def categorylist(request):
     categories = Field.objects.all()
 
     context = RequestContext(request, {
+        'isworker': isWorker(request),
         'title': "Categories : Sahayak",
         'mainmenuindex': 2,
         'categories': categories,
@@ -172,6 +180,7 @@ def categorypage(request, category_name):
         'mainmenuindex': 2,
         'category': category,
         'workers': workers,
+        'isworker': isWorker(request),
     })
 
     return HttpResponse(template.render(context))
@@ -201,6 +210,7 @@ def workerpage(request, worker_number):
         'comments': comments,
         'commentscount': commentscount,
         'userinfo': userinfo,
+        'isworker': isWorker(request),
     })
 
     return HttpResponse(template.render(context))
@@ -266,6 +276,7 @@ def hireworker(request, worker_number):
         'userinfo': userinfo,
         'form': form,
         'success': created,
+        'isworker': isWorker(request),
     })
 
     return HttpResponse(template.render(context))
@@ -280,6 +291,7 @@ def myjobs(request):
         'title': "My Jobs",
         'mainmenuindex': 3,
         'jobs': myjobs,
+        'isworker': isWorker(request),
     })
 
     return HttpResponse(template.render(context))
