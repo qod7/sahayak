@@ -26,6 +26,10 @@ def login(request):
     else:
         return render(request, 'login.html')
 
+def logout(request):
+    auth.logout(request)
+    return redirect('home')
+
 def home(request):
     template = loader.get_template('home.html')
     context = RequestContext(request, {
