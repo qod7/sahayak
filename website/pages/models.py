@@ -147,6 +147,9 @@ class Job(models.Model):
     def __str__(self):
         return self.title+" for customer "+self.customer.first_name+" "+self.customer.last_name+" by "+self.worker.getname()
 
+    def customerinfo(self):
+        return UserInfo.objects.get(user=self.customer)
+
 class UserInfo(models.Model):
     user = models.OneToOneField(User, related_name="userinfo", related_query_name="info")
 

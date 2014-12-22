@@ -19,6 +19,8 @@
           <p>{{job.description}}</p>
           <strong>Status: </strong><br/>
           <p>{{job.get_status_display}}</p>
+          <strong>Map of Custoemr</strong>
+                <iframe width="100%" height="315" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q={{ job.customerinfo.latitude }},{{ job.customerinfo.longitude }}&hl=es;z=14&amp;output=embed"></iframe>
 
         </div>
       </div>

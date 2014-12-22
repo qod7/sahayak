@@ -75,7 +75,7 @@
             <li {% if mainmenuindex == 2 %}class="active" {% endif %}><a href="{% url 'categorylist' %}">Categories</a></li>
             <li {% if mainmenuindex == 3 %}class="active" {% endif %}><a href="{% url 'myjobs' %}">My Jobs</a></li>
             {% if isworker %}
-            <li {% if mainmenuindex == 4 %}class="active" {% endif %}><a href="{% url 'workerjobs' %}">My incoming Jobs</a></li>
+            <li {% if mainmenuindex == 4 %}class="active" {% endif %}><a href="{% url 'workerjobs' %}">Jobs given to me</a></li>
             {% endif %}
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
